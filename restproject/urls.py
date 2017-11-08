@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from escuela.views import ApiEscuela, ApiEstudiante
+from frontend.views import home_escuelas, home_estudiantes
 
 urlpatterns = [
+    url(r'^$', home_escuelas, name='home_escuelas'),
+    url(r'^estudiantes/$', home_estudiantes, name='home_estudiantes'),
     url(r'^admin/', admin.site.urls),
     url(r'^api/escuela/new', ApiEscuela.create),
     url(r'^api/escuela/$', ApiEscuela.get_all),

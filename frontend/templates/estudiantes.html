@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Estudiantes</title>
+    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}"
+          rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Estudiantes</h1>
+
+            <table id="table_estudiantes" class="table">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Escuela</th>
+                </tr>
+            </table>
+
+            <a href="{% url 'home_escuelas' %}"
+               class="btn btn-block btn-primary">Escuelas</a>
+
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="{% static 'lib/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+<script>
+    $.ajax({
+        url: 'http://localhost:8000/api/estudiante/',
+        type: 'GET',
+        success: function (estudiantes) {
+            $.each(estudiantes, function (index, estudiante) {
+                $('#table_estudiantes').append(
+                    '<tr>' +
+                    '<td>' + estudiante.nombre + '</td>' +
+                    '<td>' + estudiante.escuela + '</td>' +
+                    '</tr>');
+            })
+        },
+        error: function () {
+            console.log('An error has occurred');
+        }
+    });
+</script>
+</html>
