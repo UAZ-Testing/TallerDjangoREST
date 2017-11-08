@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from escuela.views import ApiEscuela
+from escuela.views import ApiEscuela, ApiEstudiante
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/escuela/new', ApiEscuela.create),
     url(r'^api/escuela/$', ApiEscuela.get_all),
     url(r'^api/escuela/(?P<id_escuela>[0-9]+)/$', ApiEscuela.manage_by_id),
+    url(r'^api/estudiante/new$', ApiEstudiante.create),
+    url(r'^api/estudiante/$', ApiEstudiante.get_all),
+    url(r'^api/estudiante/(?P<id_estudiante>[0-9]+)/$',
+        ApiEstudiante.manage_by_id),
 ]

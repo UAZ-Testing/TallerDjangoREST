@@ -2,6 +2,6 @@
 
 ## Instalación:
 ```
-virtualenv --python=/usr/bin/python2.7 venv
+virtualenv --python=/usr/bin/python3.5 venv
 pip install requirements.txt
 ```
